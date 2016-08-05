@@ -72,7 +72,7 @@ public struct JLToastDelay {
         // Temporarily change colour to red for debug text
         if let bgColour = JLToastView.defaultValueForAttributeName(JLToastViewBackgroundColorAttributeName, forUserInterfaceIdiom: .unspecified) as? UIColor {
             JLToastView.setDefaultValue(
-                UIColor.red(),
+                UIColor.red,
                 forAttributeName: JLToastViewBackgroundColorAttributeName,
                 userInterfaceIdiom: .unspecified
             )

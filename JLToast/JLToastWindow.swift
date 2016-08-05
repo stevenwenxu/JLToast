@@ -22,10 +22,10 @@ import UIKit
 public class JLToastWindow: UIWindow {
 
     public static let sharedWindow: JLToastWindow = {
-        let window = JLToastWindow(frame: UIScreen.main().bounds)
+        let window = JLToastWindow(frame: UIScreen.main.bounds)
         window.isUserInteractionEnabled = false
         window.windowLevel = CGFloat.greatestFiniteMagnitude
-        window.backgroundColor = .clear()
+        window.backgroundColor = UIColor.clear
         window.rootViewController = JLToastWindowRootViewController()
         window.isHidden = false
         return window
@@ -65,11 +65,11 @@ private class JLToastWindowRootViewController: UIViewController {
         super.viewDidLoad()
     }
 
-    private override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIApplication.shared().statusBarStyle
+	private override var preferredStatusBarStyle: UIStatusBarStyle {
+        return UIApplication.shared.statusBarStyle
     }
 
-    private override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+	private override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .all
     }
 

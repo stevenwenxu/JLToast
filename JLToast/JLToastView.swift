@@ -37,7 +37,7 @@ public let JLToastViewLandscapeOffsetYAttributeName = "JLToastViewLandscapeOffse
     init() {
         super.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
 
-        let userInterfaceIdiom = UIDevice.current().userInterfaceIdiom
+        let userInterfaceIdiom = UIDevice.current.userInterfaceIdiom
 
         self.isUserInteractionEnabled = false
 
@@ -60,7 +60,7 @@ public let JLToastViewLandscapeOffsetYAttributeName = "JLToastViewLandscapeOffse
             JLToastViewTextColorAttributeName,
             forUserInterfaceIdiom: userInterfaceIdiom
         ) as? UIColor
-        self.textLabel.backgroundColor = UIColor.clear()
+        self.textLabel.backgroundColor = UIColor.clear
         self.textLabel.font = self.dynamicType.defaultValueForAttributeName(
             JLToastViewFontAttributeName,
             forUserInterfaceIdiom: userInterfaceIdiom
@@ -72,7 +72,7 @@ public let JLToastViewLandscapeOffsetYAttributeName = "JLToastViewLandscapeOffse
         self.textInsets = (self.dynamicType.defaultValueForAttributeName(
             JLToastViewTextInsetsAttributeName,
             forUserInterfaceIdiom: userInterfaceIdiom
-        ) as! NSValue).uiEdgeInsetsValue()
+        ) as! NSValue).uiEdgeInsetsValue
     }
     
     required convenience public init?(coder aDecoder: NSCoder) {
@@ -80,7 +80,7 @@ public let JLToastViewLandscapeOffsetYAttributeName = "JLToastViewLandscapeOffse
     }
     
     func updateView() {
-        let deviceWidth = UIScreen.main().bounds.width
+        let deviceWidth = UIScreen.main.bounds.width
         let constraintSize = CGSize(width: deviceWidth * (280.0 / 320.0), height: CGFloat.greatestFiniteMagnitude)
         let textLabelSize = self.textLabel.sizeThatFits(constraintSize)
         self.textLabel.frame = CGRect(
@@ -101,13 +101,13 @@ public let JLToastViewLandscapeOffsetYAttributeName = "JLToastViewLandscapeOffse
         var width:CGFloat
         var height:CGFloat
 
-        let screenSize = UIScreen.main().bounds.size
+        let screenSize = UIScreen.main.bounds.size
         let backgroundViewSize = self.backgroundView.frame.size
 
-        let orientation = UIApplication.shared().statusBarOrientation
-        let systemVersion = (UIDevice.current().systemVersion as NSString).floatValue
+        let orientation = UIApplication.shared.statusBarOrientation
+        let systemVersion = (UIDevice.current.systemVersion as NSString).floatValue
 
-        let userInterfaceIdiom = UIDevice.current().userInterfaceIdiom
+        let userInterfaceIdiom = UIDevice.current.userInterfaceIdiom
         let portraitOffsetY = self.dynamicType.defaultValueForAttributeName(
             JLToastViewPortraitOffsetYAttributeName,
             forUserInterfaceIdiom: userInterfaceIdiom
@@ -172,7 +172,7 @@ public extension JLToastView {
 
             // textLabel.textColor
             JLToastViewTextColorAttributeName: [
-                .unspecified: UIColor.white()
+                .unspecified: UIColor.white
             ],
 
             // textLabel.font
