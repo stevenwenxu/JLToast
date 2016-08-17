@@ -155,7 +155,7 @@ public let JLToastViewLandscapeOffsetYAttributeName = "JLToastViewLandscapeOffse
 
 public extension JLToastView {
     private struct Singleton {
-        static var defaultValues: [String: [UIUserInterfaceIdiom: AnyObject]] = [
+        static var defaultValues: [String: [UIUserInterfaceIdiom: Any]] = [
             // backgroundView.color
             JLToastViewBackgroundColorAttributeName: [
                 .unspecified: UIColor(white: 0, alpha: 0.7)
@@ -197,9 +197,9 @@ public extension JLToastView {
 
     class func defaultValueForAttributeName(_ attributeName: String,
                                             forUserInterfaceIdiom userInterfaceIdiom: UIUserInterfaceIdiom)
-                                            -> AnyObject {
+                                            -> Any {
         let valueForAttributeName = Singleton.defaultValues[attributeName]!
-        if let value: AnyObject = valueForAttributeName[userInterfaceIdiom] {
+        if let value = valueForAttributeName[userInterfaceIdiom] {
             return value
         }
         return valueForAttributeName[.unspecified]!
