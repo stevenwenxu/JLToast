@@ -47,10 +47,10 @@ public let JLToastViewLandscapeOffsetYAttributeName = "JLToastViewLandscapeOffse
             JLToastViewBackgroundColorAttributeName,
             forUserInterfaceIdiom: userInterfaceIdiom
         ) as? UIColor
-        self.backgroundView.layer.cornerRadius = type(of: self).defaultValueForAttributeName(
+        self.backgroundView.layer.cornerRadius = CGFloat(type(of: self).defaultValueForAttributeName(
             JLToastViewCornerRadiusAttributeName,
             forUserInterfaceIdiom: userInterfaceIdiom
-        ) as! CGFloat
+        ) as! Double)
         self.backgroundView.clipsToBounds = true
         self.addSubview(self.backgroundView)
 
@@ -108,14 +108,14 @@ public let JLToastViewLandscapeOffsetYAttributeName = "JLToastViewLandscapeOffse
         let systemVersion = (UIDevice.current.systemVersion as NSString).floatValue
 
         let userInterfaceIdiom = UIDevice.current.userInterfaceIdiom
-        let portraitOffsetY = type(of: self).defaultValueForAttributeName(
+        let portraitOffsetY = CGFloat(type(of: self).defaultValueForAttributeName(
             JLToastViewPortraitOffsetYAttributeName,
             forUserInterfaceIdiom: userInterfaceIdiom
-        ) as! CGFloat
-        let landscapeOffsetY = type(of: self).defaultValueForAttributeName(
+        ) as! Double)
+        let landscapeOffsetY = CGFloat(type(of: self).defaultValueForAttributeName(
             JLToastViewLandscapeOffsetYAttributeName,
             forUserInterfaceIdiom: userInterfaceIdiom
-        ) as! CGFloat
+        ) as! Double)
 
         if UIInterfaceOrientationIsLandscape(orientation) && systemVersion < 8.0 {
             width = screenSize.height
@@ -155,7 +155,7 @@ public let JLToastViewLandscapeOffsetYAttributeName = "JLToastViewLandscapeOffse
 
 public extension JLToastView {
     private struct Singleton {
-        static var defaultValues: [String: [UIUserInterfaceIdiom: AnyObject]] = [
+        static var defaultValues: [String: [UIUserInterfaceIdiom: Any]] = [
             // backgroundView.color
             JLToastViewBackgroundColorAttributeName: [
                 .unspecified: UIColor(white: 0, alpha: 0.7)
@@ -163,7 +163,7 @@ public extension JLToastView {
 
             // backgroundView.layer.cornerRadius
             JLToastViewCornerRadiusAttributeName: [
-                .unspecified: 5 as AnyObject
+                .unspecified: 5.0
             ],
 
             JLToastViewTextInsetsAttributeName: [
@@ -183,23 +183,23 @@ public extension JLToastView {
             ],
 
             JLToastViewPortraitOffsetYAttributeName: [
-                .unspecified: 30 as AnyObject,
-                .phone: 30 as AnyObject,
-                .pad: 60 as AnyObject,
+                .unspecified: 30.0,
+                .phone: 30.0,
+                .pad: 60.0,
             ],
             JLToastViewLandscapeOffsetYAttributeName: [
-                .unspecified: 20 as AnyObject,
-                .phone: 20 as AnyObject,
-                .pad: 40 as AnyObject,
+                .unspecified: 20.0,
+                .phone: 20.0,
+                .pad: 40.0,
             ],
         ]
     }
 
     class func defaultValueForAttributeName(_ attributeName: String,
                                             forUserInterfaceIdiom userInterfaceIdiom: UIUserInterfaceIdiom)
-                                            -> AnyObject {
+                                            -> Any {
         let valueForAttributeName = Singleton.defaultValues[attributeName]!
-        if let value: AnyObject = valueForAttributeName[userInterfaceIdiom] {
+        if let value = valueForAttributeName[userInterfaceIdiom] {
             return value
         }
         return valueForAttributeName[.unspecified]!
