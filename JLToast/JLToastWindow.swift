@@ -61,15 +61,15 @@ private class JLToastWindowRootViewController: UIViewController {
         self.init(nibName: nil, bundle: nil)
     }
 
-    private override func viewDidLoad() {
+    fileprivate override func viewDidLoad() {
         super.viewDidLoad()
     }
 
-	private override var preferredStatusBarStyle: UIStatusBarStyle {
+	fileprivate override var preferredStatusBarStyle: UIStatusBarStyle {
         return UIApplication.shared.statusBarStyle
     }
 
-	private override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+	fileprivate override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .all
     }
 
