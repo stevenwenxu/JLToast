@@ -68,7 +68,7 @@ protocol JLToastDelegate: class {
         self._queue.addOperation(toast)
     }
 
-    func deviceOrientationDidChange(_ sender: AnyObject?) {
+    @objc func deviceOrientationDidChange(_ sender: AnyObject?) {
         if self._queue.operations.count > 0 && self._queue.operations.count <= self._queue.maxConcurrentOperationCount {
             for toast in self._queue.operations {
                 let thisToast: JLToast = toast as! JLToast

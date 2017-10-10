@@ -45,7 +45,7 @@ public class JLToastWindow: UIWindow {
     }
 
     /// Bring JLToastWindow to top when another window is being shown.
-    func bringWindowToTop(_ notification: Notification) {
+	@objc func bringWindowToTop(_ notification: Notification) {
         if !(notification.object is JLToastWindow) {
             type(of: self).sharedWindow.isHidden = true
             type(of: self).sharedWindow.isHidden = false
