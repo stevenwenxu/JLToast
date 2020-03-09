@@ -72,5 +72,12 @@ private class JLToastWindowRootViewController: UIViewController {
 	fileprivate override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .all
     }
-
+	
+	override var childForHomeIndicatorAutoHidden: UIViewController? {
+		if let vc = (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController as? UINavigationController {
+			return vc.topViewController
+		}
+		
+		return nil
+	}
 }
