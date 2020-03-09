@@ -74,10 +74,15 @@ private class JLToastWindowRootViewController: UIViewController {
     }
 	
 	override var childForHomeIndicatorAutoHidden: UIViewController? {
-		if let vc = (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController as? UINavigationController {
-			return vc.topViewController
+		if #available(iOS 11.0, *) {
+			if let vc = (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController as? UINavigationController {
+				return vc.childForHomeIndicatorAutoHidden
+			}
+		} else {
+			// Fallback on earlier versions
+			return nil
 		}
-		
+
 		return nil
 	}
 }
