@@ -68,6 +68,15 @@ public struct JLToastDelay {
     // Use ONLY for debugging / staging builds
     public class func showDebugText(_ text: String) {
         #if DEBUG || RELEASE || PURPLE
+            showText(text, duration: JLToastDelay.ShortDelay)
+        #endif
+    }
+
+    public class func showProdText(_ text: String) {
+        showText(text, duration: 5)
+    }
+
+    private class func showText(_ text: String, duration: TimeInterval) {
         // Temporarily change colour to red for debug text
         if let bgColour = JLToastView.defaultValueForAttributeName(JLToastViewBackgroundColorAttributeName, forUserInterfaceIdiom: .unspecified) as? UIColor {
             JLToastView.setDefaultValue(
@@ -75,25 +84,7 @@ public struct JLToastDelay {
                 forAttributeName: JLToastViewBackgroundColorAttributeName,
                 userInterfaceIdiom: .unspecified
             )
-            JLToast.makeText(text).show()
-            JLToastView.setDefaultValue(
-                bgColour,
-                forAttributeName: JLToastViewBackgroundColorAttributeName,
-                userInterfaceIdiom: .unspecified
-            )
-        }
-        #endif
-    }
-
-    public class func showProdText(_ text: String) {
-        // Temporarily change colour to red for debug text
-        if let bgColour = JLToastView.defaultValueForAttributeName(JLToastViewBackgroundColorAttributeName, forUserInterfaceIdiom: .unspecified) as? UIColor {
-            JLToastView.setDefaultValue(
-                UIColor.darkGray,
-                forAttributeName: JLToastViewBackgroundColorAttributeName,
-                userInterfaceIdiom: .unspecified
-            )
-            JLToast.makeText(text, duration: JLToastDelay.LongDelay).show()
+            JLToast.makeText(text, duration: duration).show()
             JLToastView.setDefaultValue(
                 bgColour,
                 forAttributeName: JLToastViewBackgroundColorAttributeName,
