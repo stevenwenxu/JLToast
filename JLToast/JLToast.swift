@@ -68,49 +68,17 @@ public struct JLToastDelay {
     // Use ONLY for debugging / staging builds
     public class func showDebugText(_ text: String) {
         #if DEBUG || RELEASE || PURPLE
-            showText(text, duration: JLToastDelay.ShortDelay)
-        #endif
-    }
-
-    public class func showProdText(_ text: String) {
-        showText(text, duration: 5)
-    }
-
-    private class func showText(_ text: String, duration: TimeInterval) {
-        // Temporarily change colour to red for debug text
-        if let bgColour = JLToastView.defaultValueForAttributeName(JLToastViewBackgroundColorAttributeName, forUserInterfaceIdiom: .unspecified) as? UIColor {
             JLToastView.setDefaultValue(
                 UIColor.red,
                 forAttributeName: JLToastViewBackgroundColorAttributeName,
                 userInterfaceIdiom: .unspecified
             )
-            JLToast.makeText(text, duration: duration).show()
-            JLToastView.setDefaultValue(
-                bgColour,
-                forAttributeName: JLToastViewBackgroundColorAttributeName,
-                userInterfaceIdiom: .unspecified
-            )
-        }
-    }
-
-    public class func makeText(_ text: String) -> JLToast {
-        return JLToast.makeText(text, delay: 0, duration: JLToastDelay.ShortDelay)
-    }
-    
-    public class func makeText(_ text: String, duration: TimeInterval) -> JLToast {
-        return JLToast.makeText(text, delay: 0, duration: duration)
-    }
-    
-    public class func makeText(_ text: String, delay: TimeInterval, duration: TimeInterval) -> JLToast {
-        let toast = JLToast()
-        toast.text = text
-        toast.delay = delay
-        toast.duration = duration
-        return toast
-    }
-    
-    public func show() {
-        JLToastCenter.defaultCenter().addToast(self)
+            let toast = JLToast()
+            toast.text = text
+            toast.delay = 0
+            toast.duration = JLToastDelay.ShortDelay
+            JLToastCenter.defaultCenter().addToast(toast)
+        #endif
     }
     
     override public func start() {
